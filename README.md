@@ -16,17 +16,10 @@ Please cite the original authors when using or adapting this work.
 
 ## Overview
 
-kmersGWAS+ extends the original workflow by adding support for BLINK-C association modeling, phenotype batching, optional covariates, empirical threshold estimation, and post-run storage optimization.
+kmersGWAS+ extends the original workflow by adding support for BLINK-C association modeling, optional covariates, empirical threshold estimation, and post-run storage optimization.
 
 The pipeline performs genome-wide association studies directly on k-mer presence/absence matrices, providing reference-independent genotyping support suitable for organisms with high genomic structural variation.
 
-## Key Features
-- Support for GEMMA (LMM) and BLINK-C association testing
-- Reference-free k-mer genotype matrices
-- Optional kinship correction
-- Empirical p-value threshold estimation from permutations
-- Multi-trait batch processing
-- Output cleanup utilities
 
 ## Dependencies
 
@@ -59,9 +52,14 @@ The pipeline performs genome-wide association studies directly on k-mer presence
 
 ## Usage Examples
 
+### Full Pipeline (GEMMA)
+```bash
+python kmers_gwas.py     --kmer-matrix data/kmers_matrix.tsv     --phenotype data/phenotypes.fam     --model gemma     --output results/gemma_output     --compute-kinship
+```
+
 ### BLINK-C GWAS
 ```bash
-python src/py_script/run_gwas_using_blinkc.py     --blinkc /path/to/blinkc     --input-dir path/to/plink_fam_directory     --output-dir results/blinkc_output
+python src/py_script/run_gwas_using_blinkc.py     --blinkc /path/to/blinkc     --input-dir path/to/plink_fam_directory output from associate kinship.py     --output-dir results/blinkc_output
 ```
 
 ### Threshold Collection
@@ -69,10 +67,6 @@ python src/py_script/run_gwas_using_blinkc.py     --blinkc /path/to/blinkc     -
 python src/py_script/blink_collect_threshold.py     --input-dir results/blinkc_output     --output results/blinkc_thresholds.txt
 ```
 
-### Full Pipeline (GEMMA)
-```bash
-python kmers_gwas.py     --kmer-matrix data/kmers_matrix.tsv     --phenotype data/phenotypes.fam     --model gemma     --output results/gemma_output     --compute-kinship
-```
 
 ## Output
 
@@ -81,12 +75,4 @@ python kmers_gwas.py     --kmer-matrix data/kmers_matrix.tsv     --phenotype dat
 - Empirical significance thresholds (if permutation workflow used)
 - Optional reduced summary results
 
-## Citation
 
-If publishing results, please cite:
-
-Voichek, Y., & Weigel, D. (2020). Identifying genetic variants underlying phenotypic variation without complete genomes. Nature Biotechnology, 38(5), 560–564.
-
-## License
-
-Specify license details here (e.g., MIT, GPL-3.0, CC-BY 4.0).
