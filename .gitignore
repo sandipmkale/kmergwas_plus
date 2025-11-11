@@ -1,0 +1,25 @@
+# Python artefacts
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Logs, data, temp
+*.log
+*.tmp
+*.bak
+*.swp
+.DS_Store
+out/
+results/
+data/
+
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+
+# R artefacts
+.Rhistory
+.RData
+.Rproj.user/
